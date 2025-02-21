@@ -10,10 +10,14 @@ public class Parqueadero {
         this.vehiculos = new ArrayList<>();
     }
 
-    // Registrar entrada
+    // Registrar entrada con validación de duplicados
     public void registrarEntrada(Vehiculo vehiculo) {
-        vehiculos.add(vehiculo);
-        System.out.println("🚗 Vehículo registrado: " + vehiculo.getPlaca());
+        if (buscarVehiculo(vehiculo.getPlaca()) != null) {
+            System.out.println("⚠️ Error: El vehículo con la placa " + vehiculo.getPlaca() + " ya está registrado.");
+        } else {
+            vehiculos.add(vehiculo);
+            System.out.println("🚗 Vehículo registrado: " + vehiculo.getPlaca());
+        }
     }
 
     // Registrar salida y retornar el costo
