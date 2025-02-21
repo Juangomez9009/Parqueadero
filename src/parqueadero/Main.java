@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Parqueadero parqueadero = new Parqueadero();
         Scanner sc = new Scanner(System.in);
-        int opcion;
+        Parqueadero parqueadero = new Parqueadero();
 
+        int opcion;
         do {
             System.out.println("\n=== GESTIÓN DE PARQUEADERO ===");
             System.out.println("1. Registrar Vehículo");
@@ -16,39 +16,40 @@ public class Main {
             System.out.println("0. Salir");
             System.out.print("Selecciona una opción: ");
             opcion = sc.nextInt();
-            sc.nextLine(); // Limpiar buffer
+            sc.nextLine(); // limpiar buffer
 
             switch (opcion) {
                 case 1:
-                    System.out.println("Tipo de vehículo (1. Automóvil | 2. Motocicleta | 3. Camión): ");
+                    System.out.print("Tipo de vehículo (1. Automóvil | 2. Motocicleta | 3. Camión): ");
                     int tipo = sc.nextInt();
-                    sc.nextLine();
+                    sc.nextLine(); // limpiar buffer
 
                     System.out.print("Placa: ");
                     String placa = sc.nextLine();
+
                     System.out.print("Marca: ");
                     String marca = sc.nextLine();
+
                     System.out.print("Modelo: ");
-                    String modelo = sc.nextLine();
+                    int modelo = sc.nextInt();
+                    sc.nextLine();
+
+                    System.out.print("Tipo de Combustible: ");
+                    String combustible = sc.nextLine();
 
                     Vehiculo vehiculo = null;
-
                     if (tipo == 1) {
-                        System.out.print("Tipo de Combustible: ");
-                        String combustible = sc.nextLine();
                         vehiculo = new Automovil(placa, marca, modelo, combustible);
                     } else if (tipo == 2) {
-                        System.out.print("Cilindraje: ");
-                        int cilindraje = sc.nextInt();
-                        vehiculo = new Motocicleta(placa, marca, modelo, cilindraje);
+                        vehiculo = new Motocicleta(placa, marca, modelo, 150); // Ejemplo
                     } else if (tipo == 3) {
-                        System.out.print("Capacidad de Carga (toneladas): ");
-                        double carga = sc.nextDouble();
-                        vehiculo = new Camion(placa, marca, modelo, carga);
+                        vehiculo = new Camion(placa, marca, modelo, 5.0); // Ejemplo
                     }
 
                     if (vehiculo != null) {
                         parqueadero.registrarEntrada(vehiculo);
+                    } else {
+                        System.out.println("⚠️ Tipo de vehículo no válido.");
                     }
                     break;
 
@@ -66,7 +67,7 @@ public class Main {
                     break;
 
                 case 0:
-                    System.out.println("🚪 Saliendo del sistema...");
+                    System.out.println("🚗 Saliendo del sistema. ¡Hasta luego!");
                     break;
 
                 default:

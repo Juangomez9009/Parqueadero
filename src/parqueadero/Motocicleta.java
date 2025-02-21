@@ -1,18 +1,20 @@
 package parqueadero;
 
 public class Motocicleta extends Vehiculo {
-    private int cilindraje;
+    private int cilindrada;
 
-    public Motocicleta(String placa, String marca, String modelo, int cilindraje) {
-        super(placa, marca, modelo);
-        this.cilindraje = cilindraje;
+    public Motocicleta(String placa, String marca, int modelo, int cilindrada) {
+        super(placa, marca, modelo);  // Llama al constructor de Vehiculo
+        this.cilindrada = cilindrada;
     }
-
-    public int getCilindraje() { return cilindraje; }
-    public void setCilindraje(int cilindraje) { this.cilindraje = cilindraje; }
 
     @Override
     public String toString() {
-        return super.toString() + ", Cilindraje: " + cilindraje + " cc";
+        return "Motocicleta{" +
+                "placa='" + getPlaca() + '\'' +
+                ", marca='" + getMarca() + '\'' +
+                ", modelo=" + getModelo() +
+                ", cilindrada=" + cilindrada +
+                '}';
     }
 }
